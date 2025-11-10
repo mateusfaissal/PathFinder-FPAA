@@ -161,4 +161,106 @@ S * * 0 1 0 0
 
 ---
 
-...
+## 💻 Uso Programático
+
+### Criando seu próprio labirinto
+
+```python
+from pathfinder import PathFinder
+
+# Definir o labirinto
+maze = [
+    ['S', 0, 1, 0, 0],
+    [0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 0],
+    [1, 0, 0, 'E', 1]
+]
+
+# Criar o PathFinder
+pathfinder = PathFinder(maze)
+
+# Exibir labirinto original
+pathfinder.display_path()
+
+# Encontrar o caminho
+path = pathfinder.find_path()
+
+if path:
+    print(f"\nMenor caminho: {pathfinder.format_path_output(path)}")
+    pathfinder.display_path(path)
+else:
+    print("\nSem solução")
+```
+
+---
+
+## 🏗️ Estrutura do Código
+
+### Classe `Node`
+Representa um nó no grafo de busca:
+- `position`: coordenadas (linha, coluna)
+- `parent`: referência ao nó pai
+- `g`: custo do início até este nó
+- `h`: heurística (Manhattan) até o destino
+- `f`: custo total (g + h)
+
+### Classe `PathFinder`
+Implementa o algoritmo A*:
+- `__init__(maze)`: inicializa com o labirinto
+- `heuristic(pos1, pos2)`: calcula distância de Manhattan
+- `get_neighbors(position)`: retorna vizinhos válidos
+- `find_path()`: executa o algoritmo A*
+- `display_path(path)`: visualiza o labirinto com caminho
+- `format_path_output(path)`: formata saída do caminho
+
+---
+
+## ✅ Requisitos Implementados
+
+- ✅ Leitura de labirinto como matriz 2D
+- ✅ Validação de existência de S e E
+- ✅ Implementação da heurística de Manhattan
+- ✅ Implementação completa do Algoritmo A*
+- ✅ Exibição do caminho em coordenadas
+- ✅ Visualização do caminho no labirinto
+- ✅ Tratamento de casos sem solução
+- ✅ Documentação completa no README.md
+- ✅ Múltiplos exemplos de teste
+
+---
+
+## 🎓 Conceitos de FPAA Aplicados
+
+### Estruturas de Dados
+- **Fila de Prioridade (Heap)**: para lista aberta, garantindo O(log n) nas operações
+- **Conjunto (Set)**: para lista fechada, garantindo O(1) nas verificações
+- **Dicionário (Dict)**: para rastrear melhor custo g de cada posição
+
+### Algoritmos de Busca
+- **Busca Informada**: uso de heurística para guiar a exploração
+- **Busca Ótima**: garantia de encontrar o caminho mais curto
+- **Backtracking**: reconstrução do caminho através dos nós pais
+
+### Análise de Complexidade
+- **Complexidade de Tempo**: O(b^d) onde b é o fator de ramificação médio
+- **Complexidade de Espaço**: O(b^d) para armazenar nós explorados
+- **Otimalidade**: garantida quando heurística é admissível e consistente
+
+---
+
+## 👥 Autores
+
+- Arthur Curi Kramberger
+- Helio Ernesto
+- Lucas Cerqueira
+- Mateus Faissal
+
+---
+
+## 📚 Referências
+
+- Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.)
+- Hart, P. E., Nilsson, N. J., & Raphael, B. (1968). *A Formal Basis for the Heuristic Determination of Minimum Cost Paths*
+- Cormen, T. H., et al. (2009). *Introduction to Algorithms* (3rd ed.)
+
+---
